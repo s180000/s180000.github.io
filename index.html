@@ -1,13 +1,20 @@
 <html>
-<body style="background-color:cyan">
+<body>
 <h1>我叫<span id="myname"></h1>
     <p>我的学号是<span id="mynumber"></span></p> 
-    <img id="logo" src="2.jpg" style="border-radius: 10px 20px 30px 40px">
+    <button id="btn">下一个</button>
+    <img id="logo" src="1.jpg" style="border-radius: 10px 20px 30px 40px">
 
     <script src="jquery-3.4.1.js"></script>
     <script>
     $(function(){
         $.get("./data.json",function(result){
+            $("#myname").text(result.myname);
+            $("#mynumber").text(result.mynumber);
+        })
+    })
+    $("#btn").click(function(){
+        $.get("./data1.json",function(result){
             $("#myname").text(result.myname);
             $("#mynumber").text(result.mynumber);
         })
