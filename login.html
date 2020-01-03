@@ -1,40 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <style>
+    .blue{
+        background:rgb(149, 196, 243);
+    }
+    </style>
 </head>
 <body>
-
-    <p>用户名<input id="stunumber" type="text"></p>
-    <p>密码<input id="password" type="password"></p>
-    <button id="btn">登陆</button>
     <script src="jquery-3.4.1.js"></script>
+
     <script>
-        $(function(){
-            $("#btn").click(function(){
-                $.ajax({
-                  url="http://10.30.201.97:8585/login",
-                  type:"POST",
-                  contentType:"application/json",
-                  data:JSON.stringify({"number":$("#number").val(),
-                                       "password":$("#password").val()
-                  }),
-                  success:function(result){
-                      if(result.result=='success'){
-                          location.href='index.html';
-                      }
-                  }
-                 
-               });
-            });
-
-        
+    $(function(){
+        $("#btn").click(function(){
+            $.ajax({
+                type:"POST",
+                xhrFields:{
+                    withCredentials:true
+                },
+                url:"http://127.0.0.1:8585/login",
+                contentType:"application/json",
+                data:JSON.stringify({number:$("#number").val(),
+                    password:$("#password").val()
+                //data:"number=18002090209$password=18002090209"
+                }),
+                success:function(result){
+                    if(result.result=='success'){
+                        location.href='index.html';
+                    }
+            }
         })
+    })
+    })
     </script>
-
-
+    <center>
+        用户名：<input type="text" id="number">
+        <br>
+        <br>
+        密  码：<input type="password" id="password">
+        <br>
+        <br>
+        <button class="blue" id="btn">登录</button>
+    </center>
 </body>
 </html>
